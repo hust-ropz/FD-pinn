@@ -1,0 +1,1 @@
+step,previous_loss,current_loss,growth_ratio,is_nonfinite,previous_max_mode,previous_max_weighted_loss_by_mode,current_max_mode,current_max_weighted_loss_by_mode

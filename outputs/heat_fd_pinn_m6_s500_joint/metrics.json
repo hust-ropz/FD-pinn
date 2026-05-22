@@ -1,0 +1,15 @@
+{
+  "modes": 6,
+  "steps": 500,
+  "num_residual": 200,
+  "initial_weight": 1.0,
+  "residual_weight": 1.0,
+  "training_schedule": "joint",
+  "final_loss": 19.36934343590848,
+  "final_initial_loss": 4.004713171767382,
+  "final_residual_loss": 15.364630264141098,
+  "relative_l2_error": 0.5541396070743727,
+  "torch_version": "2.12.0+cpu",
+  "device": "cpu",
+  "seed": 1234
+}

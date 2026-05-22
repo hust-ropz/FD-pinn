@@ -1,0 +1,301 @@
+{
+  "source_metrics": {
+    "modes": 6,
+    "steps": 500,
+    "num_residual": 200,
+    "initial_weight": 1.0,
+    "residual_weight": 1.0,
+    "training_schedule": "joint",
+    "final_loss": 19.36934343590848,
+    "final_initial_loss": 4.004713171767382,
+    "final_residual_loss": 15.364630264141098,
+    "relative_l2_error": 0.5541396070743727,
+    "torch_version": "2.12.0+cpu",
+    "device": "cpu",
+    "seed": 1234
+  },
+  "total_relative_l2_error": 0.5541396070743727,
+  "max_abs_error": 0.7169115787830627,
+  "mean_abs_error": 0.14974270653700994,
+  "relative_l2_error_at_t0": 0.3613688954286689,
+  "relative_l2_error_at_t_final": 0.675197601828321,
+  "max_relative_l2_error_over_time": 0.675197601828321,
+  "time_index_of_max_error": 100,
+  "best_training_step_by_loss": 25,
+  "best_training_loss": 19.23938509622192,
+  "final_training_loss": 19.36934343590848,
+  "top_error_modes": [
+    {
+      "mode": 2,
+      "mean_ref_amplitude": 28.23733287600008,
+      "mean_pred_amplitude": 9.538084114476051,
+      "mean_abs_spectral_error": 19.82867374263003,
+      "relative_spectral_error": 0.7022148242436569,
+      "contribution_to_total_spectral_error": 0.45403215379220835
+    },
+    {
+      "mode": 3,
+      "mean_ref_amplitude": 18.892851014984238,
+      "mean_pred_amplitude": 4.91815201098521,
+      "mean_abs_spectral_error": 14.692534455127483,
+      "relative_spectral_error": 0.7776769341733858,
+      "contribution_to_total_spectral_error": 0.2324971108925615
+    },
+    {
+      "mode": 4,
+      "mean_ref_amplitude": 11.516270947752394,
+      "mean_pred_amplitude": 22.770120854723544,
+      "mean_abs_spectral_error": 11.541698191551781,
+      "relative_spectral_error": 1.002207940740084,
+      "contribution_to_total_spectral_error": 0.14840749832363653
+    },
+    {
+      "mode": 5,
+      "mean_ref_amplitude": 6.725826277519661,
+      "mean_pred_amplitude": 15.639075554019655,
+      "mean_abs_spectral_error": 9.556578920103469,
+      "relative_spectral_error": 1.420878049146956,
+      "contribution_to_total_spectral_error": 0.09828730405575309
+    },
+    {
+      "mode": 6,
+      "mean_ref_amplitude": 3.9207911281922883,
+      "mean_pred_amplitude": 7.119654066817759e-16,
+      "mean_abs_spectral_error": 3.9207911281922883,
+      "relative_spectral_error": 1.0,
+      "contribution_to_total_spectral_error": 0.031163133958881418
+    },
+    {
+      "mode": 7,
+      "mean_ref_amplitude": 2.334178465405315,
+      "mean_pred_amplitude": 1.3792745734467167e-15,
+      "mean_abs_spectral_error": 2.334178465405315,
+      "relative_spectral_error": 1.0,
+      "contribution_to_total_spectral_error": 0.014761947293825371
+    },
+    {
+      "mode": 8,
+      "mean_ref_amplitude": 1.4288884691365464,
+      "mean_pred_amplitude": 6.062904307190773e-16,
+      "mean_abs_spectral_error": 1.4288884691365469,
+      "relative_spectral_error": 1.0000000000000002,
+      "contribution_to_total_spectral_error": 0.007196550148902901
+    },
+    {
+      "mode": 1,
+      "mean_ref_amplitude": 36.70820914176225,
+      "mean_pred_amplitude": 38.99486788484501,
+      "mean_abs_spectral_error": 2.2871288488397896,
+      "relative_spectral_error": 0.062305650488347186,
+      "contribution_to_total_spectral_error": 0.006161797886079741
+    },
+    {
+      "mode": 9,
+      "mean_ref_amplitude": 0.8981884069198428,
+      "mean_pred_amplitude": 1.1704459112361847e-15,
+      "mean_abs_spectral_error": 0.8981884069198433,
+      "relative_spectral_error": 1.0000000000000004,
+      "contribution_to_total_spectral_error": 0.003595580761100632
+    },
+    {
+      "mode": 10,
+      "mean_ref_amplitude": 0.5776705187759572,
+      "mean_pred_amplitude": 8.740165161817183e-16,
+      "mean_abs_spectral_error": 0.577670518775957,
+      "relative_spectral_error": 0.9999999999999997,
+      "contribution_to_total_spectral_error": 0.001835218694984102
+    }
+  ],
+  "t0_spectral_diagnosis": {
+    "zero_mode": {
+      "mode": 0,
+      "ref_amplitude": 40.212385860203675,
+      "pred_amplitude": 40.21238586279919,
+      "abs_spectral_error": 2.5955131377486396e-09,
+      "relative_spectral_error": 6.454511669045974e-11,
+      "contribution_to_time_spectral_error": 7.871635866348278e-21
+    },
+    "first_five_error_contribution": 0.014775699898954643,
+    "high_mode_start": 50,
+    "high_mode_ref_amplitude_ratio": 5.843349137324503e-06,
+    "low_mode_error_contribution": 0.014775699898954643,
+    "top_error_modes": [
+      {
+        "mode": 6,
+        "ref_amplitude": 17.39884817795113,
+        "pred_amplitude": 1.230462815115105e-15,
+        "abs_spectral_error": 17.39884817795113,
+        "relative_spectral_error": 1.0,
+        "contribution_to_time_spectral_error": 0.3537199295567658
+      },
+      {
+        "mode": 7,
+        "ref_amplitude": 13.860224989806062,
+        "pred_amplitude": 1.0717068944524258e-15,
+        "abs_spectral_error": 13.860224989806063,
+        "relative_spectral_error": 1.0000000000000002,
+        "contribution_to_time_spectral_error": 0.22447040655953815
+      },
+      {
+        "mode": 8,
+        "ref_amplitude": 10.960400943258088,
+        "pred_amplitude": 4.538387797581629e-16,
+        "abs_spectral_error": 10.960400943258088,
+        "relative_spectral_error": 1.0,
+        "contribution_to_time_spectral_error": 0.14036906778085073
+      },
+      {
+        "mode": 9,
+        "ref_amplitude": 8.62745659157676,
+        "pred_amplitude": 1.1192478904252577e-15,
+        "abs_spectral_error": 8.627456591576761,
+        "relative_spectral_error": 1.0000000000000002,
+        "contribution_to_time_spectral_error": 0.08697292949345799
+      },
+      {
+        "mode": 10,
+        "ref_amplitude": 6.771719124745782,
+        "pred_amplitude": 5.658112768513446e-16,
+        "abs_spectral_error": 6.771719124745782,
+        "relative_spectral_error": 1.0,
+        "contribution_to_time_spectral_error": 0.05358168975806437
+      },
+      {
+        "mode": 5,
+        "ref_amplitude": 21.589810521465168,
+        "pred_amplitude": 15.639075554019655,
+        "abs_spectral_error": 5.950734967445513,
+        "relative_spectral_error": 0.27562701217452246,
+        "contribution_to_time_spectral_error": 0.041377071444877386
+      },
+      {
+        "mode": 11,
+        "ref_amplitude": 5.305797083665271,
+        "pred_amplitude": 2.3828158596238694e-15,
+        "abs_spectral_error": 5.305797083665273,
+        "relative_spectral_error": 1.0000000000000004,
+        "contribution_to_time_spectral_error": 0.03289423617559549
+      },
+      {
+        "mode": 12,
+        "ref_amplitude": 4.152722013629521,
+        "pred_amplitude": 4.279424249199212e-16,
+        "abs_spectral_error": 4.152722013629521,
+        "relative_spectral_error": 1.0,
+        "contribution_to_time_spectral_error": 0.02015042697701972
+      },
+      {
+        "mode": 4,
+        "ref_amplitude": 26.318947965577834,
+        "pred_amplitude": 22.770120854723537,
+        "abs_spectral_error": 3.548827110863633,
+        "relative_spectral_error": 0.13483924644347836,
+        "contribution_to_time_spectral_error": 0.014715947078056934
+      },
+      {
+        "mode": 13,
+        "ref_amplitude": 3.248085443256918,
+        "pred_amplitude": 1.3881244936430485e-15,
+        "abs_spectral_error": 3.2480854432569166,
+        "relative_spectral_error": 0.9999999999999996,
+        "contribution_to_time_spectral_error": 0.012327454924228763
+      }
+    ]
+  },
+  "t_final_spectral_diagnosis": {
+    "zero_mode": {
+      "mode": 0,
+      "ref_amplitude": 40.21238586020367,
+      "pred_amplitude": 40.212385862796694,
+      "abs_spectral_error": 2.5930262381734792e-09,
+      "relative_spectral_error": 6.448327257149089e-11,
+      "contribution_to_time_spectral_error": 5.682833473790466e-21
+    },
+    "first_five_error_contribution": 0.8185425396561875,
+    "high_mode_start": 50,
+    "high_mode_ref_amplitude_ratio": 6.776592919196147e-16,
+    "low_mode_error_contribution": 0.8185425396561875,
+    "top_error_modes": [
+      {
+        "mode": 2,
+        "ref_amplitude": 21.836360227520203,
+        "pred_amplitude": 6.863392238801014e-06,
+        "abs_spectral_error": 21.836365343275585,
+        "relative_spectral_error": 1.0000002342769274,
+        "contribution_to_time_spectral_error": 0.40300627747734724
+      },
+      {
+        "mode": 4,
+        "ref_amplitude": 3.655994885024814,
+        "pred_amplitude": 22.770120854723537,
+        "abs_spectral_error": 19.114125969698964,
+        "relative_spectral_error": 5.228159932058885,
+        "contribution_to_time_spectral_error": 0.3087877016788838
+      },
+      {
+        "mode": 5,
+        "ref_amplitude": 0.9880421629742484,
+        "pred_amplitude": 15.639075554019655,
+        "abs_spectral_error": 14.651033391045406,
+        "relative_spectral_error": 14.82834836414492,
+        "contribution_to_time_spectral_error": 0.18142102805567703
+      },
+      {
+        "mode": 3,
+        "ref_amplitude": 10.29606070808591,
+        "pred_amplitude": 3.967867481637196e-05,
+        "abs_spectral_error": 10.29602414595228,
+        "relative_spectral_error": 0.9999964489201583,
+        "contribution_to_time_spectral_error": 0.08959632823298626
+      },
+      {
+        "mode": 1,
+        "ref_amplitude": 34.489971868730905,
+        "pred_amplitude": 38.99486788484501,
+        "abs_spectral_error": 4.5048960161141025,
+        "relative_spectral_error": 0.13061466194463048,
+        "contribution_to_time_spectral_error": 0.0171522322669701
+      },
+      {
+        "mode": 6,
+        "ref_amplitude": 0.20496460503222336,
+        "pred_amplitude": 9.892898636756433e-17,
+        "abs_spectral_error": 0.2049646050322233,
+        "relative_spectral_error": 0.9999999999999998,
+        "contribution_to_time_spectral_error": 3.5506580353774534e-05
+      },
+      {
+        "mode": 7,
+        "ref_amplitude": 0.0328399515738899,
+        "pred_amplitude": 1.4357158794215357e-15,
+        "abs_spectral_error": 0.032839951573889255,
+        "relative_spectral_error": 0.9999999999999803,
+        "contribution_to_time_spectral_error": 9.114988464911903e-07
+      },
+      {
+        "mode": 8,
+        "ref_amplitude": 0.004081075764272385,
+        "pred_amplitude": 9.692258964461709e-16,
+        "abs_spectral_error": 0.004081075764272668,
+        "relative_spectral_error": 1.0000000000000693,
+        "contribution_to_time_spectral_error": 1.4076685967680328e-08
+      },
+      {
+        "mode": 9,
+        "ref_amplitude": 0.00039444741908127546,
+        "pred_amplitude": 9.742342710094111e-16,
+        "abs_spectral_error": 0.00039444741908151767,
+        "relative_spectral_error": 1.000000000000614,
+        "contribution_to_time_spectral_error": 1.3150108763272268e-10
+      },
+      {
+        "mode": 10,
+        "ref_amplitude": 2.9703356236232655e-05,
+        "pred_amplitude": 4.449207587820077e-16,
+        "abs_spectral_error": 2.9703356235787773e-05,
+        "relative_spectral_error": 0.9999999999850225,
+        "contribution_to_time_spectral_error": 7.45696586270028e-13
+      }
+    ]
+  }
+}

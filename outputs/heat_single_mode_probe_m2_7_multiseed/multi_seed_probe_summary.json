@@ -1,0 +1,52 @@
+{
+  "modes": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "steps": 500,
+  "num_residual": 200,
+  "success_rate_by_mode": {
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.4,
+    "5": 0.2,
+    "6": 0.2,
+    "7": 0.6
+  },
+  "best_seed_by_mode": {
+    "2": 4,
+    "3": 1,
+    "4": 3,
+    "5": 3,
+    "6": 2,
+    "7": 3
+  },
+  "best_error_by_mode": {
+    "2": 0.28921942867826517,
+    "3": 0.5315791984955458,
+    "4": 6.157903898787147e-05,
+    "5": 0.0002250169052503812,
+    "6": 0.0002620815665778929,
+    "7": 0.00010868354441487618
+  },
+  "modes_2_to_5_seed_sensitive": true,
+  "modes_6_to_7_seed_sensitive": true,
+  "conclusion_flags": {
+    "any_seed_succeeds_for_modes_2_to_5": true,
+    "all_seeds_fail_for_modes_2_to_5": false,
+    "modes_6_to_7_robust_across_seeds": false,
+    "likely_initialization_sensitivity": true,
+    "likely_loss_scaling_or_objective_issue": false
+  }
+}

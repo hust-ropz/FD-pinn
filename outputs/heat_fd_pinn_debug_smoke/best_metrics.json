@@ -1,0 +1,9 @@
+{
+  "best_step": 3,
+  "best_weighted_loss": 2.293916236559651,
+  "best_initial_loss": 0.0046903105450674856,
+  "best_residual_loss": 2.247013131108976,
+  "best_relative_l2_error": 0.4647090305619952,
+  "initial_weight": 10.0,
+  "residual_weight": 1.0
+}

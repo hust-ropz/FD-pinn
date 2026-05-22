@@ -1,0 +1,65 @@
+{
+  "modes": [
+    2
+  ],
+  "steps": 2,
+  "num_residual": 5,
+  "seed": 1234,
+  "main_output_path": "outputs\\heat_fd_pinn_m50_s500\\prediction.npz",
+  "main_output_available": true,
+  "main_output_skip_reason": null,
+  "top_failed_modes": [
+    {
+      "mode": 2,
+      "k": 0.3141592653589793,
+      "k_squared": 0.09869604401089357,
+      "final_loss": 537.8564424014363,
+      "final_initial_loss": 537.8253505375341,
+      "final_residual_loss": 0.031091863902271068,
+      "relative_complex_error_over_time": 0.9001361849167518,
+      "initial_complex_abs_error": 32.797114218709375,
+      "final_complex_abs_error": 18.99509345853996,
+      "fitted_decay_rate": 0.008377546206981641,
+      "decay_rate_error": -0.09031849780391193,
+      "valid_decay_fit": true,
+      "final_amplitude_ratio_pred_over_ref": 0.13026871772777618,
+      "probe_initial_complex_abs_error": 32.797114218709375,
+      "probe_final_complex_abs_error": 18.99509345853996,
+      "probe_fitted_decay_rate": 0.008377546206981641,
+      "main_initial_complex_abs_error": 0.08862849198973761,
+      "main_final_complex_abs_error": 21.836365343275585,
+      "main_fitted_decay_rate": 3.5989331673397515
+    }
+  ],
+  "modes_2_to_5_summary": [
+    {
+      "mode": 2,
+      "k": 0.3141592653589793,
+      "k_squared": 0.09869604401089357,
+      "final_loss": 537.8564424014363,
+      "final_initial_loss": 537.8253505375341,
+      "final_residual_loss": 0.031091863902271068,
+      "relative_complex_error_over_time": 0.9001361849167518,
+      "initial_complex_abs_error": 32.797114218709375,
+      "final_complex_abs_error": 18.99509345853996,
+      "fitted_decay_rate": 0.008377546206981641,
+      "decay_rate_error": -0.09031849780391193,
+      "valid_decay_fit": true,
+      "final_amplitude_ratio_pred_over_ref": 0.13026871772777618,
+      "probe_initial_complex_abs_error": 32.797114218709375,
+      "probe_final_complex_abs_error": 18.99509345853996,
+      "probe_fitted_decay_rate": 0.008377546206981641,
+      "main_initial_complex_abs_error": 0.08862849198973761,
+      "main_final_complex_abs_error": 21.836365343275585,
+      "main_fitted_decay_rate": 3.5989331673397515
+    }
+  ],
+  "modes_6_to_7_summary": [],
+  "conclusion_flags": {
+    "modes_2_to_5_fail_in_isolated_probe": true,
+    "modes_6_to_7_succeed_in_isolated_probe": false,
+    "isolated_probe_matches_main_failure_pattern": true,
+    "likely_main_loop_issue": false,
+    "likely_single_mode_optimization_issue": true
+  }
+}

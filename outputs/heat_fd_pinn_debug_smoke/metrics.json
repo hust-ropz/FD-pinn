@@ -1,0 +1,14 @@
+{
+  "modes": 3,
+  "steps": 3,
+  "num_residual": 5,
+  "initial_weight": 10.0,
+  "residual_weight": 1.0,
+  "final_loss": 2.293916236559651,
+  "final_initial_loss": 0.0046903105450674856,
+  "final_residual_loss": 2.247013131108976,
+  "relative_l2_error": 0.4647090305619952,
+  "torch_version": "2.12.0+cpu",
+  "device": "cpu",
+  "seed": 1234
+}

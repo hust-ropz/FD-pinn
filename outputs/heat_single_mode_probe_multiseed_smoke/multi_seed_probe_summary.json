@@ -1,0 +1,29 @@
+{
+  "modes": [
+    2
+  ],
+  "seeds": [
+    0,
+    1
+  ],
+  "steps": 2,
+  "num_residual": 5,
+  "success_rate_by_mode": {
+    "2": 0.0
+  },
+  "best_seed_by_mode": {
+    "2": 1
+  },
+  "best_error_by_mode": {
+    "2": 0.2095554179300002
+  },
+  "modes_2_to_5_seed_sensitive": false,
+  "modes_6_to_7_seed_sensitive": false,
+  "conclusion_flags": {
+    "any_seed_succeeds_for_modes_2_to_5": false,
+    "all_seeds_fail_for_modes_2_to_5": true,
+    "modes_6_to_7_robust_across_seeds": false,
+    "likely_initialization_sensitivity": false,
+    "likely_loss_scaling_or_objective_issue": true
+  }
+}
