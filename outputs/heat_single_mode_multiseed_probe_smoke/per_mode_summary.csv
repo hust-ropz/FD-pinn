@@ -1,0 +1,2 @@
+mode,num_seeds,num_success,success_rate,best_seed,best_final_coeff_abs_error,median_final_coeff_abs_error,median_decay_rate_relative_error
+2,2,0,0.0,1,10.793789957401781,12.847820712615011,0.9986065293366013

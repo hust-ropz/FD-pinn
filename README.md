@@ -123,6 +123,17 @@ multi-seed probe 报告入口：
 
 - [Heat Single Mode Multi-Seed Probe Round 1](docs/heat_single_mode_multiseed_probe_round1.md)
 
+运行独立 multi-seed single-mode probe 诊断：
+
+```powershell
+uv run python -m scripts.probe_heat_single_mode_multiseed --modes 2 3 4 5 6 7 --seeds 0 1 2 3 4 --output-dir outputs/heat_single_mode_multiseed_probe_round1
+```
+
+独立 multi-seed probe 输出入口：
+
+- `outputs/heat_single_mode_multiseed_probe_round1/report.md`
+- [Heat Single Mode Multi-Seed Probe Round 1](docs/heat_single_mode_multiseed_probe_round1.md)
+
 ## 说明
 
 当前实现已包含热传导方程的频域参考基线和最小 `FD-PINN` 训练闭环；经典 `PINN` 对照训练仍留在后续步骤。

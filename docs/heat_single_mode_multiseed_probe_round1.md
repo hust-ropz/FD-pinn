@@ -2,92 +2,93 @@
 
 ## 诊断目的
 
-上一轮 isolated probe 已经把 mode `2` 到 mode `5` 的异常定位到单 mode 训练轨迹层面。本轮不改 loss、不改 optimizer、不改网络结构，只在同一 isolated probe 上换 seed，检查失败是否高度依赖随机初始化。
+本轮只做 isolated single-mode multi-seed 诊断，不修改主训练脚本、不改 loss、不改优化器、不改网络结构。目标是回答一个窄问题：mode `2` 到 mode `5` 的失败是否主要由特定随机初始化导致。
 
-正式 multi-seed probe 运行命令：
+运行命令：
 
 ```powershell
-uv run python -m scripts.probe_heat_single_mode_training --modes 2,3,4,5,6,7 --seeds 0,1,2,3,4 --steps 500 --num-residual 200 --output-dir outputs/heat_single_mode_probe_m2_7_multiseed
+uv run python -m scripts.probe_heat_single_mode_multiseed --modes 2 3 4 5 6 7 --seeds 0 1 2 3 4 --output-dir outputs/heat_single_mode_multiseed_probe_round1
 ```
 
 输出文件：
 
-- `outputs/heat_single_mode_probe_m2_7_multiseed/multi_seed_probe_summary.csv`
-- `outputs/heat_single_mode_probe_m2_7_multiseed/multi_seed_probe_summary.json`
+- `outputs/heat_single_mode_multiseed_probe_round1/per_seed_results.csv`
+- `outputs/heat_single_mode_multiseed_probe_round1/per_mode_summary.csv`
+- `outputs/heat_single_mode_multiseed_probe_round1/probe_summary.json`
+- `outputs/heat_single_mode_multiseed_probe_round1/report.md`
 
-success 判据为同时满足：
+## Success 判据
+
+脚本顶部常量给出的默认 success 判据为：
+
+- `initial_coeff_abs_error < 0.01`
+- `final_coeff_abs_error < 0.01`
+- `decay_rate_relative_error < 0.1`
+
+三个条件同时满足时，`success_flag = true`。这里的 `decay_rate_relative_error` 定义为：
 
 ```text
-relative_complex_error_over_time < 1e-2
-abs(decay_rate_error) / max(k_squared, 1e-12) < 0.1
+abs(fitted_decay_rate - theoretical_decay_rate) / max(theoretical_decay_rate, 1e-12)
 ```
 
-## Success Rate
+## 聚合结果
 
-| Mode | Theory `k^2` | Success rate | Best seed | Best relative complex error |
+| Mode | Success rate | Best seed | Best final coeff abs error | Median final coeff abs error | Median decay rate relative error |
+| --- | --- | --- | --- | --- | --- |
+| `2` | `0 / 5` | `4` | `13.586695658231022` | `13.586696790317596` | `1.0000000000000002` |
+| `3` | `0 / 5` | `1` | `10.29607881715655` | `19.487478372723622` | `1.000000000000001` |
+| `4` | `2 / 5` | `3` | `0.0006448015140007333` | `19.11412620376243` | `1.0000000000000007` |
+| `5` | `1 / 5` | `3` | `0.0034936885424859472` | `14.651033469773143` | `1.0000000000000002` |
+| `6` | `1 / 5` | `2` | `0.0020050620749835647` | `9.520420766491684` | `1.0` |
+| `7` | `3 / 5` | `4` | `0.00016270254340538983` | `0.0011715059027437972` | `0.0007399515420396605` |
+
+`probe_summary.json` 的关键结论字段为：
+
+- `modes_2_to_5_have_any_successful_seed = true`
+- `modes_2_to_5_all_fail_across_seeds = false`
+- `modes_6_to_7_remain_stable_across_seeds = false`
+- `likely_seed_sensitivity = true`
+- `recommended_next_step = 转向 loss/scale 诊断；不建议把 best-of-seeds 当作修复主线。`
+
+## mode 2 到 mode 5 是否存在成功 seed
+
+存在，但只发生在部分 mode：
+
+- mode `2`: `0/5` 成功，seed `0..4` 全失败。
+- mode `3`: `0/5` 成功，seed `0..4` 全失败。
+- mode `4`: `2/5` 成功，seed `3` 和 seed `4` 成功。
+- mode `5`: `1/5` 成功，只有 seed `3` 成功。
+
+因此，mode `2` 到 mode `5` 不能被统一解释成“某个固定 seed 太差”。mode `4`、`5` 明显 seed-sensitive；mode `2`、`3` 在这五个 seed 下仍没有进入成功轨迹。
+
+## 最优 seed 的衰减率
+
+| Mode | Best seed | Theoretical decay rate | Fitted decay rate | Decay rate relative error |
 | --- | --- | --- | --- | --- |
-| `2` | `0.09869604401089357` | `0/5` | `4` | `0.28921942867826517` |
-| `3` | `0.2220660990245106` | `0/5` | `1` | `0.5315791984955458` |
-| `4` | `0.3947841760435743` | `2/5` | `3` | `6.157903898787147e-05` |
-| `5` | `0.6168502750680849` | `1/5` | `3` | `0.0002250169052503812` |
-| `6` | `0.8882643960980424` | `1/5` | `2` | `0.0002620815665778929` |
-| `7` | `1.2090265391334463` | `3/5` | `3` | `0.00010868354441487618` |
+| `2` | `4` | `0.09869604401089357` | `4.25275400665133e-09` | `0.999999956910593` |
+| `3` | `1` | `0.2220660990245106` | `3.8325827691152283` | `16.25874766995482` |
+| `4` | `3` | `0.3947841760435743` | `0.39480163491591486` | `4.422384026514743e-05` |
+| `5` | `3` | `0.6168502750680849` | `0.6167595605556634` | `0.00014706082835332` |
 
-mode `2` 到 mode `5` 不是同一种 seed 行为：
+mode `4` 和 mode `5` 在最优 seed 下的衰减率已经接近理论值，说明正确轨迹是可达的。mode `2` 最优 seed 仍几乎不衰减；mode `3` 最优 seed 仍严重过衰减，说明这两个 mode 的问题不能靠当前五个 seed 的 best-of-seeds 解决。
 
-- mode `2` 的五个 seed 全部失败，best error 仍为 `0.28921942867826517`。
-- mode `3` 的五个 seed 全部失败，best error 仍为 `0.5315791984955458`。
-- mode `4` 在 seed `3` 和 seed `4` 成功。
-- mode `5` 只在 seed `3` 成功。
+## mode 6 到 mode 7 是否稳定
 
-因此，“mode `2` 到 mode `5` 全部只是碰到了一个坏 seed”不成立；但 mode `4` 和 mode `5` 又确实表现出明显初始化敏感性。
+mode `6` 和 mode `7` 不是跨 seed 稳定成功：
 
-## Best Seed 衰减率
+- mode `6`: `1/5` 成功，只有 seed `2` 成功。
+- mode `7`: `3/5` 成功，seed `0`、`3`、`4` 成功。
 
-| Mode | Best seed | Theory `k^2` | Best fitted decay rate | Best decay rate error |
-| --- | --- | --- | --- | --- |
-| `2` | `4` | `0.09869604401089357` | `4.25275400665133e-09` | `-0.09869603975813956` |
-| `3` | `1` | `0.2220660990245106` | `3.8325827691152283` | `3.6105166700907176` |
-| `4` | `3` | `0.3947841760435743` | `0.39480163491591486` | `1.7458872340558873e-05` |
-| `5` | `3` | `0.6168502750680849` | `0.6167595605556634` | `-9.071451242148587e-05` |
-
-mode `4` 与 mode `5` 在最优 seed 下已经能学到接近理论的衰减率。mode `2` 的最优 seed 仍近似不衰减，mode `3` 的最优 seed 仍严重过衰减；它们没有因为这五个初始化切换而进入正确轨迹。
-
-## 正对照 mode 6 与 mode 7
-
-mode `6` 和 mode `7` 在上一轮 seed `1234` probe 中是正对照，但本轮跨 seed 并不稳：
-
-- mode `6` 只有 seed `2` 成功，success rate 为 `1/5`。
-- mode `7` 在 seed `0`、`3`、`4` 成功，success rate 为 `3/5`。
-
-这说明当前小网络加 `L-BFGS` 的 isolated single-mode 优化本身对 seed 有明显分岔，并不只影响先前出问题的 mode `2` 到 mode `5`。
-
-## Summary Flags
-
-`multi_seed_probe_summary.json` 给出的结论 flags 为：
-
-- `any_seed_succeeds_for_modes_2_to_5 = true`
-- `all_seeds_fail_for_modes_2_to_5 = false`
-- `modes_6_to_7_robust_across_seeds = false`
-- `likely_initialization_sensitivity = true`
-- `likely_loss_scaling_or_objective_issue = false`
-
-这些 flags 说明 seed 能改变部分 mode 的成败，尤其是 mode `4`、`5`。不过它们不应被读成“loss/objective 已经没问题”：mode `2` 和 mode `3` 在当前五个 seed 下仍全部失败，而且正对照 mode `6` 也只有一个 seed 成功，说明优化轨迹对初始状态和 mode 尺度都很脆弱。
+这说明当前小网络加 `L-BFGS(max_iter=3)` 的 isolated 单 mode 训练整体存在 seed 分岔。mode `6`、`7` 可以作为“存在成功轨迹”的正对照，但不能说明当前训练口径跨 seed 稳定。
 
 ## 当前判断
 
-当前更像是 **seed-sensitive 的单 mode 优化问题中夹着 mode 相关难点**：
+本轮结论是分化的：
 
-1. mode `4`、`5` 存在可成功 seed，初始化显著影响是否进入正确衰减轨迹。
-2. mode `2`、`3` 在本轮五个 seed 下都没有成功，不能只靠换 seed 解释。
-3. mode `6`、`7` 也不跨 seed 稳定，说明 best-of-seeds 会挑到好轨迹，但不能让训练口径本身变稳。
+1. mode `4`、`5` 对随机初始化敏感，某些 seed 可以成功。
+2. mode `2`、`3` 在 seed `0..4` 下全部失败，不能只归因于单个坏初始化。
+3. mode `6`、`7` 也没有跨 seed 稳定成功，说明 seed sensitivity 是整体优化现象，不只限于 mode `2..5`。
 
-因此本轮结果不足以支持把下一步主线改成 best-of-seeds。best-of-seeds 能展示存在可达解，尤其对 mode `4`、`5` 有用；但它绕不过 mode `2`、`3` 的持续失败，也不能解释同样配置下 mode `6` 的 seed 分岔。
+因此，当前不建议把下一步主线改成 best-of-seeds。best-of-seeds 能证明部分 mode 存在可达解，尤其是 mode `4`、`5`；但它不能解释 mode `2`、`3` 的持续失败，也不能让 mode `6`、`7` 稳定。
 
-## 下一步建议
-
-下一步更值得转向归一化和 loss/objective 尺度诊断，而不是继续扩大 seed 搜索：
-
-1. 先在单 mode 层面核查初始频谱幅值、residual loss 和闭式轨迹误差的尺度关系。
-2. 以 mode `2`、`3` 与 mode `4`、`5` 的不同失败形态为对照，判断归一化目标是否能让相同 success 判据跨 mode 更稳定。
-3. 保留 best seed 结果作为“目标可达”的旁证，不把它当成正式训练修复。
+下一步应转向 loss/scale 诊断：先检查单 mode 的初值系数尺度、残差项尺度、闭式轨迹误差之间是否存在跨 mode 不均衡，再决定是否需要做归一化单 mode 目标。

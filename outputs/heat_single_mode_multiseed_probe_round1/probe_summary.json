@@ -1,0 +1,38 @@
+{
+  "tested_modes": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "tested_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "total_runs": 30,
+  "steps": 500,
+  "num_residual": 200,
+  "success_thresholds": {
+    "initial_coeff_abs_error": 0.01,
+    "final_coeff_abs_error": 0.01,
+    "decay_rate_relative_error": 0.1
+  },
+  "mode_success_rates": {
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.4,
+    "5": 0.2,
+    "6": 0.2,
+    "7": 0.6
+  },
+  "modes_2_to_5_have_any_successful_seed": true,
+  "modes_2_to_5_all_fail_across_seeds": false,
+  "modes_6_to_7_remain_stable_across_seeds": false,
+  "likely_seed_sensitivity": true,
+  "recommended_next_step": "\u8f6c\u5411 loss/scale \u8bca\u65ad\uff1b\u4e0d\u5efa\u8bae\u628a best-of-seeds \u5f53\u4f5c\u4fee\u590d\u4e3b\u7ebf\u3002"
+}
